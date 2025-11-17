@@ -64,7 +64,7 @@ export default function BankingApp() {
   const [showBalance, setShowBalance] = useState(true);
   const [chatOpen, setChatOpen] = useState(false);
   const [chatMessages, setChatMessages] = useState([
-    { type: 'assistant', text: 'Hello! I\'m your SecureBank virtual assistant. How can I help you today?' }
+    { type: 'assistant', text: 'Hello! I\'m your Vanta Bank virtual assistant. How can I help you today?' }
   ]);
   const [chatInput, setChatInput] = useState('');
   const [transferForm, setTransferForm] = useState({
@@ -85,13 +85,13 @@ export default function BankingApp() {
     };
 
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center p-4">
         <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8">
           <div className="text-center mb-8">
-            <div className="inline-block p-3 bg-indigo-600 rounded-full mb-4">
-              <DollarSign className="w-8 h-8 text-white" />
+            <div className="inline-block p-3 bg-gradient-to-br from-gray-800 to-amber-500 rounded-full mb-4">
+              <DollarSign className="w-8 h-8 text-amber-300" />
             </div>
-            <h1 className="text-3xl font-bold text-gray-900">SecureBank</h1>
+            <h1 className="text-3xl font-bold text-gray-900">Vanta Bank</h1>
             <p className="text-gray-600 mt-2">Welcome back! Please sign in to continue.</p>
           </div>
 
@@ -105,7 +105,7 @@ export default function BankingApp() {
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent transition"
                 placeholder="Enter your username"
                 required
               />
@@ -121,7 +121,7 @@ export default function BankingApp() {
                   type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition pr-12"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent transition pr-12"
                   placeholder="Enter your password"
                   required
                 />
@@ -138,17 +138,17 @@ export default function BankingApp() {
 
             <div className="flex items-center justify-between">
               <label className="flex items-center">
-                <input type="checkbox" className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500" />
+                <input type="checkbox" className="w-4 h-4 text-amber-600 border-gray-300 rounded focus:ring-amber-500" />
                 <span className="ml-2 text-sm text-gray-600">Remember me</span>
               </label>
-              <a href="#" className="text-sm text-indigo-600 hover:text-indigo-800">
+              <a href="#" className="text-sm text-amber-600 hover:text-amber-800">
                 Forgot password?
               </a>
             </div>
 
             <button
               type="submit"
-              className="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition focus:ring-4 focus:ring-indigo-300"
+              className="w-full bg-gradient-to-r from-gray-800 to-amber-600 text-white py-3 rounded-lg font-semibold hover:from-gray-700 hover:to-amber-500 transition focus:ring-4 focus:ring-amber-300"
             >
               Sign In
             </button>
@@ -157,7 +157,7 @@ export default function BankingApp() {
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-600">
               Don't have an account?{' '}
-              <a href="#" className="text-indigo-600 hover:text-indigo-800 font-semibold">
+              <a href="#" className="text-amber-600 hover:text-amber-800 font-semibold">
                 Sign up
               </a>
             </p>
@@ -187,8 +187,8 @@ export default function BankingApp() {
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
             <div className="flex items-center">
-              <DollarSign className="w-8 h-8 text-indigo-600" />
-              <span className="ml-2 text-xl font-bold text-gray-900">SecureBank</span>
+              <DollarSign className="w-8 h-8 text-amber-600" />
+              <span className="ml-2 text-xl font-bold text-gray-900">Vanta Bank</span>
             </div>
           </div>
 
@@ -235,7 +235,7 @@ export default function BankingApp() {
                 onClick={() => setCurrentPage(item.id)}
                 className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition ${
                   currentPage === item.id
-                    ? 'bg-indigo-50 text-indigo-600'
+                    ? 'bg-gradient-to-r from-gray-800 to-amber-600 text-white'
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
@@ -253,8 +253,8 @@ export default function BankingApp() {
               <div className="p-4">
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center">
-                    <DollarSign className="w-8 h-8 text-indigo-600" />
-                    <span className="ml-2 text-xl font-bold">SecureBank</span>
+                    <DollarSign className="w-8 h-8 text-amber-600" />
+                    <span className="ml-2 text-xl font-bold">Vanta Bank</span>
                   </div>
                   <button onClick={() => setIsMobileMenuOpen(false)} aria-label="Close menu">
                     <X className="w-6 h-6" />
@@ -270,7 +270,7 @@ export default function BankingApp() {
                       }}
                       className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition ${
                         currentPage === item.id
-                          ? 'bg-indigo-50 text-indigo-600'
+                          ? 'bg-gradient-to-r from-gray-800 to-amber-600 text-white'
                           : 'text-gray-700 hover:bg-gray-50'
                       }`}
                     >
@@ -315,9 +315,9 @@ export default function BankingApp() {
           <button
             key={idx}
             onClick={() => setCurrentPage(action.page)}
-            className="flex flex-col items-center justify-center p-4 bg-white rounded-xl border border-gray-200 hover:border-indigo-300 hover:shadow-md transition"
+            className="flex flex-col items-center justify-center p-4 bg-white rounded-xl border border-gray-200 hover:border-amber-400 hover:shadow-md transition"
           >
-            <action.icon className="w-8 h-8 text-indigo-600 mb-2" />
+            <action.icon className="w-8 h-8 text-amber-600 mb-2" />
             <span className="text-sm font-medium text-gray-700">{action.label}</span>
           </button>
         ))}
@@ -330,7 +330,7 @@ export default function BankingApp() {
           {mockAccounts.map((account) => (
             <div
               key={account.id}
-              className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl p-6 text-white cursor-pointer hover:shadow-xl transition"
+              className="bg-gradient-to-br from-gray-800 to-amber-600 rounded-xl p-6 text-white cursor-pointer hover:shadow-xl transition"
               onClick={() => {
                 setSelectedAccount(account);
                 setCurrentPage('transactions');
@@ -338,18 +338,18 @@ export default function BankingApp() {
             >
               <div className="flex justify-between items-start mb-8">
                 <div>
-                  <p className="text-indigo-100 text-sm">{account.type.toUpperCase()}</p>
+                  <p className="text-amber-100 text-sm">{account.type.toUpperCase()}</p>
                   <p className="text-white font-medium mt-1">{account.accountNumber}</p>
                 </div>
                 <CreditCard className="w-8 h-8 text-white opacity-80" />
               </div>
               <div>
-                <p className="text-indigo-100 text-sm mb-1">{account.name}</p>
+                <p className="text-amber-100 text-sm mb-1">{account.name}</p>
                 <p className="text-3xl font-bold">
                   {showBalance ? `$${Math.abs(account.balance).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : '••••••'}
                 </p>
                 {account.limit && (
-                  <p className="text-indigo-100 text-sm mt-2">
+                  <p className="text-amber-100 text-sm mt-2">
                     Limit: ${account.limit.toLocaleString()}
                   </p>
                 )}
@@ -365,7 +365,7 @@ export default function BankingApp() {
           <h2 className="text-xl font-bold text-gray-900">Recent Transactions</h2>
           <button
             onClick={() => setCurrentPage('transactions')}
-            className="text-indigo-600 hover:text-indigo-800 text-sm font-medium flex items-center"
+            className="text-amber-600 hover:text-amber-800 text-sm font-medium flex items-center"
           >
             View all
             <ChevronRight className="w-4 h-4 ml-1" />
@@ -430,8 +430,8 @@ export default function BankingApp() {
               onClick={() => setSelectedAccount(account)}
               className={`px-4 py-2 rounded-lg font-medium transition ${
                 selectedAccount.id === account.id
-                  ? 'bg-indigo-600 text-white'
-                  : 'bg-white border border-gray-300 text-gray-700 hover:border-indigo-300'
+                  ? 'bg-gradient-to-r from-gray-800 to-amber-600 text-white'
+                  : 'bg-white border border-gray-300 text-gray-700 hover:border-amber-400'
               }`}
             >
               {account.name}
@@ -449,13 +449,13 @@ export default function BankingApp() {
                 placeholder="Search transactions..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
               />
             </div>
             <select
               value={filterCategory}
               onChange={(e) => setFilterCategory(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
             >
               {categories.map((cat) => (
                 <option key={cat} value={cat}>
@@ -517,8 +517,8 @@ export default function BankingApp() {
         </div>
 
         {/* Portfolio Summary */}
-        <div className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl p-6 text-white">
-          <p className="text-indigo-100 text-sm mb-2">Total Portfolio Value</p>
+        <div className="bg-gradient-to-br from-gray-800 to-amber-600 rounded-xl p-6 text-white">
+          <p className="text-amber-100 text-sm mb-2">Total Portfolio Value</p>
           <p className="text-4xl font-bold mb-4">
             ${showBalance ? totalValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '••••••'}
           </p>
@@ -678,7 +678,7 @@ export default function BankingApp() {
                   id="from-account"
                   value={transferForm.from}
                   onChange={(e) => setTransferForm({ ...transferForm, from: parseInt(e.target.value) })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
                 >
                   {mockAccounts.map((account) => (
                     <option key={account.id} value={account.id}>
@@ -702,7 +702,7 @@ export default function BankingApp() {
                   id="to-account"
                   value={transferForm.to}
                   onChange={(e) => setTransferForm({ ...transferForm, to: parseInt(e.target.value) })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
                 >
                   {mockAccounts.filter(a => a.id !== transferForm.from).map((account) => (
                     <option key={account.id} value={account.id}>
@@ -725,7 +725,7 @@ export default function BankingApp() {
                     min="0.01"
                     value={transferForm.amount}
                     onChange={(e) => setTransferForm({ ...transferForm, amount: e.target.value })}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-lg"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent text-lg"
                     placeholder="0.00"
                     required
                   />
@@ -751,7 +751,7 @@ export default function BankingApp() {
 
               <button
                 type="submit"
-                className="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition focus:ring-4 focus:ring-indigo-300"
+                className="w-full bg-gradient-to-r from-gray-800 to-amber-600 text-white py-3 rounded-lg font-semibold hover:from-gray-700 hover:to-amber-500 transition focus:ring-4 focus:ring-amber-300"
               >
                 Complete Transfer
               </button>
@@ -844,7 +844,7 @@ export default function BankingApp() {
               <div key={idx} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
                 <div className={`max-w-xs sm:max-w-md lg:max-w-lg px-4 py-3 rounded-2xl ${
                   message.type === 'user'
-                    ? 'bg-indigo-600 text-white'
+                    ? 'bg-gradient-to-r from-gray-800 to-amber-600 text-white'
                     : 'bg-gray-100 text-gray-900'
                 }`}>
                   <p className="text-sm">{message.text}</p>
@@ -881,11 +881,11 @@ export default function BankingApp() {
                 value={chatInput}
                 onChange={(e) => setChatInput(e.target.value)}
                 placeholder="Type your message..."
-                className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
               />
               <button
                 type="submit"
-                className="px-6 py-3 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition focus:ring-4 focus:ring-indigo-300"
+                className="px-6 py-3 bg-gradient-to-r from-gray-800 to-amber-600 text-white rounded-lg font-semibold hover:from-gray-700 hover:to-amber-500 transition focus:ring-4 focus:ring-amber-300"
               >
                 Send
               </button>
@@ -919,7 +919,7 @@ export default function BankingApp() {
       {currentPage !== 'chat' && !chatOpen && (
         <button
           onClick={() => setChatOpen(true)}
-          className="fixed bottom-6 right-6 p-4 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-700 transition focus:ring-4 focus:ring-indigo-300 z-50"
+          className="fixed bottom-6 right-6 p-4 bg-gradient-to-br from-gray-800 to-amber-600 text-white rounded-full shadow-lg hover:from-gray-700 hover:to-amber-500 transition focus:ring-4 focus:ring-amber-300 z-50"
           aria-label="Open chat"
         >
           <MessageCircle className="w-6 h-6" />
@@ -931,7 +931,7 @@ export default function BankingApp() {
         <div className="fixed bottom-6 right-6 w-96 bg-white rounded-xl shadow-2xl border border-gray-200 z-50 flex flex-col" style={{ height: '500px' }}>
           <div className="flex items-center justify-between p-4 border-b border-gray-200">
             <div className="flex items-center space-x-2">
-              <MessageCircle className="w-5 h-5 text-indigo-600" />
+              <MessageCircle className="w-5 h-5 text-amber-600" />
               <h3 className="font-semibold text-gray-900">Virtual Assistant</h3>
             </div>
             <button
@@ -948,7 +948,7 @@ export default function BankingApp() {
               <div key={idx} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
                 <div className={`max-w-xs px-3 py-2 rounded-lg text-sm ${
                   message.type === 'user'
-                    ? 'bg-indigo-600 text-white'
+                    ? 'bg-gradient-to-r from-gray-800 to-amber-600 text-white'
                     : 'bg-gray-100 text-gray-900'
                 }`}>
                   {message.text}
@@ -964,11 +964,11 @@ export default function BankingApp() {
                 value={chatInput}
                 onChange={(e) => setChatInput(e.target.value)}
                 placeholder="Type a message..."
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-amber-500 focus:border-transparent"
               />
               <button
                 type="submit"
-                className="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-medium hover:bg-indigo-700 transition"
+                className="px-4 py-2 bg-gradient-to-r from-gray-800 to-amber-600 text-white rounded-lg text-sm font-medium hover:from-gray-700 hover:to-amber-500 transition"
               >
                 Send
               </button>
