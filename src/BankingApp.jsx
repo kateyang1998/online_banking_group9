@@ -88,8 +88,8 @@ export default function BankingApp() {
       <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center p-4">
         <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8">
           <div className="text-center mb-8">
-            <div className="inline-block p-3 bg-gradient-to-br from-gray-800 to-amber-500 rounded-full mb-4">
-              <DollarSign className="w-8 h-8 text-amber-300" />
+            <div className="inline-block mb-4">
+              <img src="/online_banking_group9/Logo.png" alt="Vanta Bank Logo" className="w-16 h-16 mx-auto object-contain" />
             </div>
             <h1 className="text-3xl font-bold text-gray-900">Vanta Bank</h1>
             <p className="text-gray-600 mt-2">Welcome back! Please sign in to continue.</p>
@@ -176,7 +176,7 @@ export default function BankingApp() {
   // Header Component
   const Header = () => (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-40">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-4 sm:px-6">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <button
@@ -187,7 +187,7 @@ export default function BankingApp() {
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
             <div className="flex items-center">
-              <DollarSign className="w-8 h-8 text-amber-600" />
+              <img src="/online_banking_group9/logo-icon.png" alt="Vanta Bank" className="w-8 h-8 object-contain" />
               <span className="ml-2 text-xl font-bold text-gray-900">Vanta Bank</span>
             </div>
           </div>
@@ -253,7 +253,7 @@ export default function BankingApp() {
               <div className="p-4">
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center">
-                    <DollarSign className="w-8 h-8 text-amber-600" />
+                    <img src="/online_banking_group9/logo-icon.png" alt="Vanta Bank" className="w-8 h-8 object-contain" />
                     <span className="ml-2 text-xl font-bold">Vanta Bank</span>
                   </div>
                   <button onClick={() => setIsMobileMenuOpen(false)} aria-label="Close menu">
@@ -430,6 +430,40 @@ export default function BankingApp() {
       return matchesSearch && matchesCategory;
     });
 
+    const handleExport = () => {
+      const csvContent = [
+        ['Date', 'Merchant', 'Category', 'Amount', 'Type', 'Status'],
+        ...filteredTransactions.map(t => [
+          t.date,
+          t.merchant,
+          t.category,
+          t.amount,
+          t.type,
+          t.status
+        ])
+      ].map(row => row.join(',')).join('\n');
+
+      const blob = new Blob([csvContent], { type: 'text/csv' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `transactions-${selectedAccount.name}-${new Date().toISOString().split('T')[0]}.csv`;
+      a.click();
+      window.URL.revokeObjectURL(url);
+    };
+
+    // Calculate spending by category
+    const spendingByCategory = categories
+      .filter(cat => cat !== 'all')
+      .map(cat => {
+        const total = mockTransactions
+          .filter(t => t.category === cat && t.type === 'debit')
+          .reduce((sum, t) => sum + Math.abs(t.amount), 0);
+        return { category: cat, total };
+      })
+      .filter(item => item.total > 0)
+      .sort((a, b) => b.total - a.total);
+
     return (
       <div className="space-y-8">
         <div className="pb-4 border-b border-gray-200">
@@ -453,6 +487,33 @@ export default function BankingApp() {
             </button>
           ))}
         </div>
+
+        {/* Spending Analytics */}
+        {spendingByCategory.length > 0 && (
+          <div className="bg-white rounded-xl border border-gray-200 p-6">
+            <h2 className="text-lg font-bold text-gray-900 mb-4">Spending by Category</h2>
+            <div className="space-y-3">
+              {spendingByCategory.map((item, idx) => {
+                const maxTotal = spendingByCategory[0].total;
+                const percentage = (item.total / maxTotal) * 100;
+                return (
+                  <div key={idx}>
+                    <div className="flex justify-between items-center mb-1">
+                      <span className="text-sm font-medium text-gray-700">{item.category}</span>
+                      <span className="text-sm font-bold text-gray-900">${item.total.toFixed(2)}</span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div
+                        className="bg-gradient-to-r from-gray-800 to-amber-600 h-2 rounded-full transition-all duration-500"
+                        style={{ width: `${percentage}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
 
         {/* Filters - Enhanced Common Region */}
         <div className="bg-white rounded-xl border border-gray-200 p-5">
@@ -526,6 +587,13 @@ export default function BankingApp() {
             </div>
           ))}
         </div>
+        <button
+          onClick={handleExport}
+          className="px-6 py-3 bg-gradient-to-r from-gray-800 to-amber-600 text-white rounded-lg font-semibold hover:from-gray-700 hover:to-amber-500 transition focus:ring-4 focus:ring-amber-300 shadow-md whitespace-nowrap"
+          title="Export transactions to CSV"
+        >
+          Export Transactions to CSV
+        </button>
       </div>
     );
   };
