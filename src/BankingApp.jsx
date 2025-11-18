@@ -673,6 +673,51 @@ export default function BankingApp() {
           </div>
         </div>
 
+        {/* Portfolio Performance Chart */}
+        <div>
+          <h2 className="text-xl font-bold text-gray-900 mb-4">Portfolio Performance</h2>
+          <div className="bg-white rounded-xl border border-gray-200 p-6">
+            <div className="mb-6">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm text-gray-600">Asset Allocation</span>
+              </div>
+              <div className="flex h-8 rounded-lg overflow-hidden">
+                {mockInvestments.map((inv, idx) => {
+                  const percentage = (inv.value / totalValue) * 100;
+                  const colors = ['bg-orange-500', 'bg-yellow-500', 'bg-blue-500', 'bg-indigo-500'];
+                  return (
+                    <div
+                      key={inv.id}
+                      className={`${colors[idx]} transition-all duration-500 hover:opacity-80 cursor-pointer`}
+                      style={{ width: `${percentage}%` }}
+                      title={`${inv.name}: ${percentage.toFixed(1)}%`}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-2 gap-3">
+              {mockInvestments.map((inv, idx) => {
+                const percentage = (inv.value / totalValue) * 100;
+                const colors = ['bg-orange-500', 'bg-yellow-500', 'bg-blue-500', 'bg-indigo-500'];
+                return (
+                  <div key={inv.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div className="flex items-center space-x-2">
+                      <div className={`w-3 h-3 rounded-full ${colors[idx]}`}></div>
+                      <span className="text-sm font-medium text-gray-700">{inv.symbol}</span>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-sm font-bold text-gray-900">{percentage.toFixed(1)}%</p>
+                      <p className="text-xs text-gray-500">${inv.value.toLocaleString()}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
         {/* Investment Transactions */}
         <div>
           <h2 className="text-xl font-bold text-gray-900 mb-4">Recent Investment Activity</h2>
