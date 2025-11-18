@@ -3,7 +3,7 @@ import { Menu, X, Home, CreditCard, TrendingUp, Send, MessageCircle, User, LogOu
 
 // Mock data
 const mockAccounts = [
-  { id: 1, name: 'Checking Account', type: 'checking', balance: 5420.50, accountNumber: '****4521' },
+  { id: 1, name: 'Chequing Account', type: 'chequing', balance: 5420.50, accountNumber: '****4521' },
   { id: 2, name: 'Savings Account', type: 'savings', balance: 12350.00, accountNumber: '****7823' },
   { id: 3, name: 'Credit Card', type: 'credit', balance: -1250.30, limit: 5000, accountNumber: '****3391' }
 ];
@@ -44,16 +44,16 @@ const mockInvestmentTransactions = [
 ];
 
 const mockTransferHistory = [
-  { id: 1, date: '2024-11-16', from: 'Checking', to: 'Savings', amount: 500.00, status: 'completed' },
-  { id: 2, date: '2024-11-14', from: 'Savings', to: 'Checking', amount: 200.00, status: 'completed' },
-  { id: 3, date: '2024-11-12', from: 'Checking', to: 'Investment', amount: 1000.00, status: 'completed' },
-  { id: 4, date: '2024-11-10', from: 'Savings', to: 'Checking', amount: 300.00, status: 'completed' },
-  { id: 5, date: '2024-11-08', from: 'Checking', to: 'Savings', amount: 750.00, status: 'completed' },
-  { id: 6, date: '2024-11-06', from: 'Checking', to: 'External Account', amount: 450.00, status: 'completed' },
-  { id: 7, date: '2024-11-04', from: 'Savings', to: 'Checking', amount: 600.00, status: 'completed' },
-  { id: 8, date: '2024-11-02', from: 'Checking', to: 'Investment', amount: 2000.00, status: 'completed' },
-  { id: 9, date: '2024-10-30', from: 'Savings', to: 'Checking', amount: 400.00, status: 'completed' },
-  { id: 10, date: '2024-10-28', from: 'Checking', to: 'Savings', amount: 1500.00, status: 'completed' }
+  { id: 1, date: '2024-11-16', from: 'Chequing', to: 'Savings', amount: 500.00, status: 'completed' },
+  { id: 2, date: '2024-11-14', from: 'Savings', to: 'Chequing', amount: 200.00, status: 'completed' },
+  { id: 3, date: '2024-11-12', from: 'Chequing', to: 'Investment', amount: 1000.00, status: 'completed' },
+  { id: 4, date: '2024-11-10', from: 'Savings', to: 'Chequing', amount: 300.00, status: 'completed' },
+  { id: 5, date: '2024-11-08', from: 'Chequing', to: 'Savings', amount: 750.00, status: 'completed' },
+  { id: 6, date: '2024-11-06', from: 'Chequing', to: 'External Account', amount: 450.00, status: 'completed' },
+  { id: 7, date: '2024-11-04', from: 'Savings', to: 'Chequing', amount: 600.00, status: 'completed' },
+  { id: 8, date: '2024-11-02', from: 'Chequing', to: 'Investment', amount: 2000.00, status: 'completed' },
+  { id: 9, date: '2024-10-30', from: 'Savings', to: 'Chequing', amount: 400.00, status: 'completed' },
+  { id: 10, date: '2024-10-28', from: 'Chequing', to: 'Savings', amount: 1500.00, status: 'completed' }
 ];
 
 export default function BankingApp() {
@@ -289,44 +289,52 @@ export default function BankingApp() {
 
   // Dashboard Page
   const Dashboard = () => (
-    <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+    <div className="space-y-8">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-4 border-b border-gray-200">
         <div>
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Welcome back, John!</h1>
-          <p className="text-gray-600 mt-1">Here's your financial overview</p>
+          <p className="text-gray-600 mt-2 text-base">Here's your financial overview</p>
         </div>
         <button
           onClick={() => setShowBalance(!showBalance)}
-          className="mt-4 sm:mt-0 flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+          className="mt-4 sm:mt-0 flex items-center space-x-2 px-5 py-2.5 border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-amber-400 transition"
         >
           {showBalance ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-          <span className="text-sm font-medium">{showBalance ? 'Hide' : 'Show'} Balances</span>
+          <span className="text-sm font-semibold">{showBalance ? 'Hide' : 'Show'} Balances</span>
         </button>
       </div>
 
-      {/* Quick Actions */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        {[
-          { icon: Send, label: 'Transfer', page: 'transfer' },
-          { icon: CreditCard, label: 'Pay Bill', page: 'transactions' },
-          { icon: TrendingUp, label: 'Invest', page: 'investments' },
-          { icon: MessageCircle, label: 'Support', page: 'chat' }
-        ].map((action, idx) => (
-          <button
-            key={idx}
-            onClick={() => setCurrentPage(action.page)}
-            className="flex flex-col items-center justify-center p-4 bg-white rounded-xl border border-gray-200 hover:border-amber-400 hover:shadow-md transition"
-          >
-            <action.icon className="w-8 h-8 text-amber-600 mb-2" />
-            <span className="text-sm font-medium text-gray-700">{action.label}</span>
-          </button>
-        ))}
+      {/* Quick Actions - Enhanced Proximity & Grouping */}
+      <div className="bg-white rounded-xl border border-gray-200 p-6">
+        <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-4">Quick Actions</h3>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          {[
+            { icon: Send, label: 'Transfer', page: 'transfer' },
+            { icon: CreditCard, label: 'Pay Bill', page: 'transactions' },
+            { icon: TrendingUp, label: 'Invest', page: 'investments' },
+            { icon: MessageCircle, label: 'Support', page: 'chat' }
+          ].map((action, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentPage(action.page)}
+              className="flex flex-col items-center justify-center p-4 bg-gray-50 rounded-lg border border-gray-200 hover:border-amber-400 hover:bg-amber-50 hover:shadow-md transition group"
+            >
+              <div className="p-3 bg-white rounded-full mb-3 group-hover:bg-amber-100 transition">
+                <action.icon className="w-6 h-6 text-amber-600" />
+              </div>
+              <span className="text-sm font-medium text-gray-700">{action.label}</span>
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Accounts */}
-      <div>
-        <h2 className="text-xl font-bold text-gray-900 mb-4">Your Accounts</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <h2 className="text-xl font-bold text-gray-900">Your Accounts</h2>
+          <span className="text-sm text-gray-500">{mockAccounts.length} accounts</span>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {mockAccounts.map((account) => (
             <div
               key={account.id}
@@ -360,12 +368,15 @@ export default function BankingApp() {
       </div>
 
       {/* Recent Transactions */}
-      <div>
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-bold text-gray-900">Recent Transactions</h2>
+      <div className="space-y-4">
+        <div className="flex items-center justify-between pb-3 border-b border-gray-200">
+          <div>
+            <h2 className="text-xl font-bold text-gray-900">Recent Transactions</h2>
+            <p className="text-sm text-gray-500 mt-1">Last 5 transactions</p>
+          </div>
           <button
             onClick={() => setCurrentPage('transactions')}
-            className="text-amber-600 hover:text-amber-800 text-sm font-medium flex items-center"
+            className="text-amber-600 hover:text-amber-800 text-sm font-semibold flex items-center px-3 py-2 rounded-lg hover:bg-amber-50 transition"
           >
             View all
             <ChevronRight className="w-4 h-4 ml-1" />
@@ -374,25 +385,29 @@ export default function BankingApp() {
         <div className="bg-white rounded-xl border border-gray-200 divide-y divide-gray-200">
           {mockTransactions.slice(0, 5).map((transaction) => (
             <div key={transaction.id} className="p-4 hover:bg-gray-50 transition">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-3">
-                  <div className={`p-2 rounded-full ${transaction.type === 'credit' ? 'bg-green-100' : 'bg-red-100'}`}>
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center space-x-3 flex-1 min-w-0">
+                  <div className={`p-2 rounded-full flex-shrink-0 ${transaction.type === 'credit' ? 'bg-green-100' : 'bg-red-100'}`}>
                     {transaction.type === 'credit' ? (
                       <ArrowDownLeft className="w-5 h-5 text-green-600" />
                     ) : (
                       <ArrowUpRight className="w-5 h-5 text-red-600" />
                     )}
                   </div>
-                  <div>
-                    <p className="font-medium text-gray-900">{transaction.merchant}</p>
-                    <p className="text-sm text-gray-500">{transaction.date}</p>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-medium text-gray-900 truncate">{transaction.merchant}</p>
+                    <div className="flex items-center gap-2 mt-1">
+                      <p className="text-sm text-gray-500">{transaction.date}</p>
+                      <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600">
+                        {transaction.category}
+                      </span>
+                    </div>
                   </div>
                 </div>
-                <div className="text-right">
-                  <p className={`font-semibold ${transaction.type === 'credit' ? 'text-green-600' : 'text-gray-900'}`}>
+                <div className="text-right flex-shrink-0">
+                  <p className={`font-semibold text-lg ${transaction.type === 'credit' ? 'text-green-600' : 'text-gray-900'}`}>
                     {transaction.type === 'credit' ? '+' : ''}${Math.abs(transaction.amount).toFixed(2)}
                   </p>
-                  <p className="text-sm text-gray-500">{transaction.category}</p>
                 </div>
               </div>
             </div>
@@ -408,7 +423,7 @@ export default function BankingApp() {
     const [filterCategory, setFilterCategory] = useState('all');
 
     const categories = ['all', ...new Set(mockTransactions.map(t => t.category))];
-    
+
     const filteredTransactions = mockTransactions.filter(t => {
       const matchesSearch = t.merchant.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory = filterCategory === 'all' || t.category === filterCategory;
@@ -416,10 +431,10 @@ export default function BankingApp() {
     });
 
     return (
-      <div className="space-y-6">
-        <div>
+      <div className="space-y-8">
+        <div className="pb-4 border-b border-gray-200">
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Transactions</h1>
-          <p className="text-gray-600 mt-1">{selectedAccount.name}</p>
+          <p className="text-gray-600 mt-2 text-base">{selectedAccount.name}</p>
         </div>
 
         {/* Account Selector */}
@@ -439,30 +454,40 @@ export default function BankingApp() {
           ))}
         </div>
 
-        {/* Filters */}
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+        {/* Filters - Enhanced Common Region */}
+        <div className="bg-white rounded-xl border border-gray-200 p-5">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wide">Filter & Search</h3>
+            <span className="text-xs text-gray-500">{filteredTransactions.length} results</span>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search transactions..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-              />
+            <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+              <label className="block text-xs font-medium text-gray-600 mb-2">Search by Merchant</label>
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search transactions..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 bg-white rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                />
+              </div>
             </div>
-            <select
-              value={filterCategory}
-              onChange={(e) => setFilterCategory(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-            >
-              {categories.map((cat) => (
-                <option key={cat} value={cat}>
-                  {cat === 'all' ? 'All Categories' : cat}
-                </option>
-              ))}
-            </select>
+            <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+              <label className="block text-xs font-medium text-gray-600 mb-2">Filter by Category</label>
+              <select
+                value={filterCategory}
+                onChange={(e) => setFilterCategory(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 bg-white rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+              >
+                {categories.map((cat) => (
+                  <option key={cat} value={cat}>
+                    {cat === 'all' ? 'All Categories' : cat}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
         </div>
 
@@ -508,12 +533,12 @@ export default function BankingApp() {
   // Investments Page
   const InvestmentsPage = () => {
     const totalValue = mockInvestments.reduce((sum, inv) => sum + inv.value, 0);
-    
+
     return (
-      <div className="space-y-6">
-        <div>
+      <div className="space-y-8">
+        <div className="pb-4 border-b border-gray-200">
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Investments</h1>
-          <p className="text-gray-600 mt-1">Track your portfolio performance</p>
+          <p className="text-gray-600 mt-2 text-base">Track your portfolio performance</p>
         </div>
 
         {/* Portfolio Summary */}
@@ -644,10 +669,10 @@ export default function BankingApp() {
     const toAccount = mockAccounts.find(a => a.id === transferForm.to);
 
     return (
-      <div className="space-y-6">
-        <div>
+      <div className="space-y-8">
+        <div className="pb-4 border-b border-gray-200">
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Transfer Funds</h1>
-          <p className="text-gray-600 mt-1">Move money between your accounts</p>
+          <p className="text-gray-600 mt-2 text-base">Move money between your accounts</p>
         </div>
 
         {transferSuccess && (
@@ -665,20 +690,21 @@ export default function BankingApp() {
         )}
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Transfer Form */}
+          {/* Transfer Form - Enhanced Visual Flow & Continuity */}
           <div className="bg-white rounded-xl border border-gray-200 p-6">
             <h2 className="text-lg font-bold text-gray-900 mb-6">New Transfer</h2>
-            
+
             <form onSubmit={handleTransfer} className="space-y-6">
-              <div>
-                <label htmlFor="from-account" className="block text-sm font-medium text-gray-700 mb-2">
+              {/* From Account Section */}
+              <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                <label htmlFor="from-account" className="block text-sm font-semibold text-gray-700 mb-3">
                   From Account
                 </label>
                 <select
                   id="from-account"
                   value={transferForm.from}
                   onChange={(e) => setTransferForm({ ...transferForm, from: parseInt(e.target.value) })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 bg-white rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
                 >
                   {mockAccounts.map((account) => (
                     <option key={account.id} value={account.id}>
@@ -688,21 +714,26 @@ export default function BankingApp() {
                 </select>
               </div>
 
-              <div className="flex justify-center">
-                <div className="p-2 bg-gray-100 rounded-full">
-                  <ArrowDownLeft className="w-6 h-6 text-gray-600" />
+              {/* Visual Flow Indicator */}
+              <div className="flex justify-center relative">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-0.5 h-full bg-gradient-to-b from-gray-200 via-amber-400 to-gray-200"></div>
+                </div>
+                <div className="relative p-3 bg-gradient-to-br from-gray-800 to-amber-600 rounded-full shadow-lg z-10">
+                  <ArrowDownLeft className="w-6 h-6 text-white" />
                 </div>
               </div>
 
-              <div>
-                <label htmlFor="to-account" className="block text-sm font-medium text-gray-700 mb-2">
+              {/* To Account Section */}
+              <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                <label htmlFor="to-account" className="block text-sm font-semibold text-gray-700 mb-3">
                   To Account
                 </label>
                 <select
                   id="to-account"
                   value={transferForm.to}
                   onChange={(e) => setTransferForm({ ...transferForm, to: parseInt(e.target.value) })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 bg-white rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
                 >
                   {mockAccounts.filter(a => a.id !== transferForm.from).map((account) => (
                     <option key={account.id} value={account.id}>
@@ -712,12 +743,13 @@ export default function BankingApp() {
                 </select>
               </div>
 
-              <div>
-                <label htmlFor="amount" className="block text-sm font-medium text-gray-700 mb-2">
-                  Amount
+              {/* Amount Section */}
+              <div className="bg-amber-50 rounded-lg p-4 border border-amber-200">
+                <label htmlFor="amount" className="block text-sm font-semibold text-gray-700 mb-3">
+                  Transfer Amount
                 </label>
                 <div className="relative">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg font-semibold">$</span>
                   <input
                     id="amount"
                     type="number"
@@ -725,25 +757,27 @@ export default function BankingApp() {
                     min="0.01"
                     value={transferForm.amount}
                     onChange={(e) => setTransferForm({ ...transferForm, amount: e.target.value })}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent text-lg"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 bg-white rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent text-lg font-semibold"
                     placeholder="0.00"
                     required
                   />
                 </div>
               </div>
 
-              <div className="bg-gray-50 rounded-lg p-4 space-y-2">
+              {/* Summary Section */}
+              <div className="bg-gradient-to-br from-gray-50 to-amber-50 rounded-lg p-5 border border-gray-200 space-y-3">
+                <h3 className="text-sm font-semibold text-gray-700 mb-3">Transfer Summary</h3>
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600">From</span>
-                  <span className="font-medium text-gray-900">{fromAccount?.name}</span>
+                  <span className="font-semibold text-gray-900">{fromAccount?.name}</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600">To</span>
-                  <span className="font-medium text-gray-900">{toAccount?.name}</span>
+                  <span className="font-semibold text-gray-900">{toAccount?.name}</span>
                 </div>
-                <div className="flex justify-between text-sm pt-2 border-t border-gray-200">
-                  <span className="text-gray-600">Transfer Amount</span>
-                  <span className="font-bold text-gray-900">
+                <div className="flex justify-between pt-3 border-t border-gray-300">
+                  <span className="text-gray-700 font-semibold">Transfer Amount</span>
+                  <span className="font-bold text-xl text-gray-900">
                     ${transferForm.amount || '0.00'}
                   </span>
                 </div>
@@ -751,7 +785,7 @@ export default function BankingApp() {
 
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-gray-800 to-amber-600 text-white py-3 rounded-lg font-semibold hover:from-gray-700 hover:to-amber-500 transition focus:ring-4 focus:ring-amber-300"
+                className="w-full bg-gradient-to-r from-gray-800 to-amber-600 text-white py-4 rounded-lg font-semibold hover:from-gray-700 hover:to-amber-500 transition focus:ring-4 focus:ring-amber-300 shadow-lg"
               >
                 Complete Transfer
               </button>
@@ -808,7 +842,7 @@ export default function BankingApp() {
         const lowerInput = userMessage.toLowerCase();
         
         if (lowerInput.includes('balance') || lowerInput.includes('account')) {
-          response = 'Your current checking account balance is $5,420.50. Would you like to know about your other accounts?';
+          response = 'Your current chequing account balance is $5,420.50. Would you like to know about your other accounts?';
         } else if (lowerInput.includes('transfer')) {
           response = 'I can help you with transfers. You can transfer funds between your accounts using the Transfer page. Would you like me to guide you through it?';
         } else if (lowerInput.includes('transaction') || lowerInput.includes('payment')) {
@@ -831,10 +865,10 @@ export default function BankingApp() {
     ];
 
     return (
-      <div className="space-y-6">
-        <div>
+      <div className="space-y-8">
+        <div className="pb-4 border-b border-gray-200">
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Virtual Assistant</h1>
-          <p className="text-gray-600 mt-1">Get help with your banking needs</p>
+          <p className="text-gray-600 mt-2 text-base">Get help with your banking needs</p>
         </div>
 
         <div className="bg-white rounded-xl border border-gray-200 flex flex-col" style={{ height: 'calc(100vh - 300px)', minHeight: '500px' }}>
@@ -916,9 +950,9 @@ export default function BankingApp() {
       </div>
 
       {/* Floating Chat Button */}
-      {currentPage !== 'chat' && !chatOpen && (
+      {currentPage !== 'chat' && (
         <button
-          onClick={() => setChatOpen(true)}
+          onClick={() => setCurrentPage('chat')}
           className="fixed bottom-6 right-6 p-4 bg-gradient-to-br from-gray-800 to-amber-600 text-white rounded-full shadow-lg hover:from-gray-700 hover:to-amber-500 transition focus:ring-4 focus:ring-amber-300 z-50"
           aria-label="Open chat"
         >
