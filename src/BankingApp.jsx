@@ -86,16 +86,16 @@ export default function BankingApp() {
 
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center p-4">
-        <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8">
-          <div className="text-center mb-8">
+        <main className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8">
+          <header className="text-center mb-8">
             <div className="inline-block mb-4">
               <img src="/online_banking_group9/Logo.png" alt="Vanta Bank Logo" className="w-16 h-16 mx-auto object-contain" />
             </div>
             <h1 className="text-3xl font-bold text-gray-900">Vanta Bank</h1>
             <p className="text-gray-600 mt-2">Welcome back! Please sign in to continue.</p>
-          </div>
+          </header>
 
-          <form onSubmit={handleSignIn} className="space-y-6">
+          <form onSubmit={handleSignIn} className="space-y-6" aria-label="Sign in form">
             <div>
               <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-2">
                 Username
@@ -163,12 +163,12 @@ export default function BankingApp() {
             </p>
           </div>
 
-          <div className="mt-8 pt-6 border-t border-gray-200">
+          <footer className="mt-8 pt-6 border-t border-gray-200">
             <p className="text-xs text-gray-500 text-center">
               Secured by 256-bit encryption • FDIC Insured
             </p>
-          </div>
-        </div>
+          </footer>
+        </main>
       </div>
     );
   };
