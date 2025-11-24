@@ -175,7 +175,7 @@ export default function BankingApp() {
 
   // Header Component
   const Header = () => (
-    <header className="bg-white border-b border-gray-200 sticky top-0 z-40">
+    <header className="bg-white border-b border-gray-200 fixed top-0 left-0 right-0 z-40">
       <div className="w-full px-4 sm:px-6">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
@@ -227,7 +227,7 @@ export default function BankingApp() {
     return (
       <>
         {/* Desktop Sidebar */}
-        <aside className="hidden lg:block w-64 bg-white border-r border-gray-200 min-h-screen">
+        <aside className="hidden lg:block w-64 bg-white border-r border-gray-200 fixed left-0 top-16 bottom-0 overflow-y-auto">
           <nav className="p-4 space-y-2">
             {navItems.map((item) => (
               <button
@@ -567,16 +567,16 @@ export default function BankingApp() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="font-medium text-gray-900 truncate">{transaction.merchant}</p>
-                    <div className="mt-1">
-                      <p className="text-sm text-gray-500 max-[500px]:mb-1">{transaction.date}</p>
-                      <div className="flex items-center gap-2 max-[500px]:flex-wrap min-[501px]:inline-flex min-[501px]:ml-2">
-                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600">
-                          {transaction.category}
-                        </span>
-                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                          {transaction.status}
-                        </span>
-                      </div>
+                    <div className="mt-1 flex flex-col max-[500px]:gap-1 sm:flex-row sm:items-center sm:gap-2">
+                      <p className="text-sm text-gray-500">{transaction.date}</p>
+                        <div className="flex flex-wrap gap-2 mt-1 min-[501px]:mt-0">
+                          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600">
+                            {transaction.category}
+                          </span>
+                          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            {transaction.status}
+                          </span>
+                        </div>
                     </div>
                   </div>
                 </div>
@@ -1053,14 +1053,16 @@ export default function BankingApp() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
-      <div className="flex">
+      <div className="pt-16">
         <Sidebar />
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto w-full">
-          {currentPage === 'dashboard' && <Dashboard />}
-          {currentPage === 'transactions' && <TransactionsPage />}
-          {currentPage === 'investments' && <InvestmentsPage />}
-          {currentPage === 'transfer' && <TransferPage />}
-          {currentPage === 'chat' && <ChatPage />}
+        <main className="lg:ml-64 p-4 sm:p-6 lg:p-8">
+          <div className="max-w-7xl mx-auto">
+            {currentPage === 'dashboard' && <Dashboard />}
+            {currentPage === 'transactions' && <TransactionsPage />}
+            {currentPage === 'investments' && <InvestmentsPage />}
+            {currentPage === 'transfer' && <TransferPage />}
+            {currentPage === 'chat' && <ChatPage />}
+          </div>
         </main>
       </div>
 
