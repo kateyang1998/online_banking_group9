@@ -547,8 +547,9 @@ export default function BankingApp() {
               </div>
             </div>
             <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
-              <label className="block text-xs font-medium text-gray-600 mb-2">Filter by Category</label>
+              <label htmlFor="filter-category" className="block text-xs font-medium text-gray-600 mb-2">Filter by Category</label>
               <select
+                id="filter-category"
                 value={filterCategory}
                 onChange={(e) => setFilterCategory(e.target.value)}
                 className="w-full px-4 py-2 border border-gray-300 bg-white rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
