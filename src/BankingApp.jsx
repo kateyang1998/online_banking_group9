@@ -248,8 +248,8 @@ export default function BankingApp() {
 
         {/* Mobile Sidebar */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden fixed inset-0 z-50 bg-black bg-opacity-50" onClick={() => setIsMobileMenuOpen(false)}>
-            <aside className="w-64 bg-white h-full" onClick={(e) => e.stopPropagation()}>
+          <div className="lg:hidden fixed inset-0 z-50 bg-black bg-opacity-50 animate-fadeIn" onClick={() => setIsMobileMenuOpen(false)}>
+            <aside className="w-full bg-white h-full animate-slideInLeft" onClick={(e) => e.stopPropagation()}>
               <div className="p-4">
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center">
