@@ -919,7 +919,7 @@ export default function BankingApp() {
           <div className="bg-white rounded-xl border border-gray-200 p-6">
             <h2 className="text-lg font-bold text-gray-900 mb-6">Transfer History</h2>
             
-            <div className="space-y-3 max-h-96 overflow-y-auto">
+            <div className="space-y-3 max-h-[750px] overflow-y-auto">
               {mockTransferHistory.map((transfer) => (
                 <div key={transfer.id} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition">
                   <div className="flex items-center justify-between mb-2">
