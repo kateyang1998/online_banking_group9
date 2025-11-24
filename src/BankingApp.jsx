@@ -421,6 +421,13 @@ export default function BankingApp() {
   const TransactionsPage = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [filterCategory, setFilterCategory] = useState('all');
+    const [animateBars, setAnimateBars] = useState(false);
+
+    useEffect(() => {
+      // Trigger bar animation after component mounts
+      const timer = setTimeout(() => setAnimateBars(true), 100);
+      return () => clearTimeout(timer);
+    }, []);
 
     const categories = ['all', ...new Set(mockTransactions.map(t => t.category))];
 
@@ -504,8 +511,11 @@ export default function BankingApp() {
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-2">
                       <div
-                        className="bg-gradient-to-r from-gray-800 to-amber-600 h-2 rounded-full transition-all duration-500"
-                        style={{ width: `${percentage}%` }}
+                        className="bg-gradient-to-r from-gray-800 to-amber-600 h-2 rounded-full transition-all ease-out"
+                        style={{
+                          width: animateBars ? `${percentage}%` : '0%',
+                          transitionDuration: '1.5s'
+                        }}
                       ></div>
                     </div>
                   </div>
