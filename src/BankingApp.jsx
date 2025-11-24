@@ -567,14 +567,16 @@ export default function BankingApp() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="font-medium text-gray-900 truncate">{transaction.merchant}</p>
-                    <div className="flex flex-wrap items-center gap-2 mt-1">
-                      <p className="text-sm text-gray-500">{transaction.date}</p>
-                      <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600">
-                        {transaction.category}
-                      </span>
-                      <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                        {transaction.status}
-                      </span>
+                    <div className="mt-1">
+                      <p className="text-sm text-gray-500 max-[500px]:mb-1">{transaction.date}</p>
+                      <div className="flex items-center gap-2 max-[500px]:flex-wrap min-[501px]:inline-flex min-[501px]:ml-2">
+                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600">
+                          {transaction.category}
+                        </span>
+                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                          {transaction.status}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
