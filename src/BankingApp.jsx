@@ -533,10 +533,11 @@ export default function BankingApp() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
-              <label className="block text-xs font-medium text-gray-600 mb-2">Search by Merchant</label>
+              <label htmlFor="search-transactions" className="block text-xs font-medium text-gray-600 mb-2">Search by Merchant</label>
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input
+                  id="search-transactions"
                   type="text"
                   placeholder="Search transactions..."
                   value={searchTerm}
@@ -1035,7 +1036,9 @@ export default function BankingApp() {
           {/* Chat Input */}
           <div className="border-t border-gray-200 p-4">
             <form onSubmit={handleSendMessage} className="flex space-x-2">
+              <label htmlFor="chat-message-input" className="sr-only">Type your message</label>
               <input
+                id="chat-message-input"
                 type="text"
                 value={chatInput}
                 onChange={(e) => setChatInput(e.target.value)}
@@ -1120,7 +1123,9 @@ export default function BankingApp() {
 
           <div className="border-t border-gray-200 p-3">
             <form onSubmit={handleSendMessage} className="flex space-x-2">
+              <label htmlFor="mini-chat-input" className="sr-only">Type a message</label>
               <input
+                id="mini-chat-input"
                 type="text"
                 value={chatInput}
                 onChange={(e) => setChatInput(e.target.value)}
