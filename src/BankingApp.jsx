@@ -187,8 +187,8 @@ export default function BankingApp() {
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
             <div className="flex items-center">
-              <img src="/online_banking_group9/logo-icon.png" alt="Vanta Bank" className="w-8 h-8 object-contain" />
-              <span className="ml-2 text-xl font-bold text-gray-900">Vanta Bank</span>
+              <img src="/online_banking_group9/logo-icon.png" alt="Vanta Bank" className="w-8 h-8 object-contain max-[405px]:w-7 max-[405px]:h-7" />
+              <span className="ml-2 text-xl font-bold text-gray-900 max-[405px]:text-base">Vanta Bank</span>
             </div>
           </div>
 
