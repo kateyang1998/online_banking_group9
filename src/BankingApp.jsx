@@ -743,7 +743,7 @@ export default function BankingApp() {
                       <p className="font-medium text-gray-900">
                         {transaction.type.toUpperCase()} {transaction.asset}
                       </p>
-                      <div className="flex flex-wrap items-center gap-2 mt-1">
+                      <div className="flex flex-wrap items-center gap-2 mt-1 max-[430px]:flex-col max-[430px]:items-start max-[430px]:gap-1">
                         <p className="text-sm text-gray-500">{transaction.date}</p>
                         <p className="text-sm text-gray-500">
                           {transaction.amount} @ ${transaction.price.toLocaleString()}
