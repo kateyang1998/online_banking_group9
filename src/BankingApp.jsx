@@ -187,7 +187,7 @@ export default function BankingApp() {
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
             <div className="flex items-center">
-              <img src="/online_banking_group9/logo-icon.png" alt="Vanta Bank" className="w-8 h-8 object-contain max-[405px]:w-7 max-[405px]:h-7" />
+              <img src="/online_banking_group9/logo-icon.png" alt="Vanta Bank Logo" className="w-8 h-8 object-contain max-[405px]:w-7 max-[405px]:h-7" />
               <span className="ml-2 text-xl font-bold text-gray-900 max-[405px]:text-base">Vanta Bank</span>
             </div>
           </div>
@@ -253,7 +253,7 @@ export default function BankingApp() {
               <div className="p-4">
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center">
-                    <img src="/online_banking_group9/logo-icon.png" alt="Vanta Bank" className="w-8 h-8 object-contain" />
+                    <img src="/online_banking_group9/logo-icon.png" alt="Vanta Bank Logo" className="w-8 h-8 object-contain" />
                     <span className="ml-2 text-xl font-bold">Vanta Bank</span>
                   </div>
                   <button onClick={() => setIsMobileMenuOpen(false)} aria-label="Close menu">
