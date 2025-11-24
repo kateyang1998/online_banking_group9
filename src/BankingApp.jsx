@@ -306,7 +306,7 @@ export default function BankingApp() {
 
       {/* Quick Actions - Enhanced Proximity & Grouping */}
       <div className="bg-white rounded-xl border border-gray-200 p-6">
-        <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-4">Quick Actions</h3>
+        <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-4">Quick Actions</h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[
             { icon: Send, label: 'Transfer', page: 'transfer' },
@@ -353,9 +353,9 @@ export default function BankingApp() {
               </div>
               <div>
                 <p className="text-amber-100 text-sm mb-1">{account.name}</p>
-                <p className="text-3xl font-bold">
+                <div className="text-3xl font-bold" aria-label={`Balance: ${showBalance ? `$${Math.abs(account.balance).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : 'hidden'}`}>
                   {showBalance ? `$${Math.abs(account.balance).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : '••••••'}
-                </p>
+                </div>
                 {account.limit && (
                   <p className="text-amber-100 text-sm mt-2">
                     Limit: ${account.limit.toLocaleString()}
@@ -626,9 +626,9 @@ export default function BankingApp() {
         {/* Portfolio Summary */}
         <div className="bg-gradient-to-br from-gray-800 to-amber-600 rounded-xl p-6 text-white">
           <p className="text-amber-100 text-sm mb-2">Total Portfolio Value</p>
-          <p className="text-4xl font-bold mb-4">
+          <div className="text-4xl font-bold mb-4" aria-label={`Total portfolio value: ${showBalance ? `$${totalValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : 'hidden'}`}>
             ${showBalance ? totalValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '••••••'}
-          </p>
+          </div>
           <div className="flex items-center space-x-2">
             <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-400 bg-opacity-20 text-white">
               +5.2% This Month
